@@ -19,7 +19,7 @@ def read_list(request, pk):
 def create_list(request):
     form = ListingForm()
     if request.method == "POST":       
-        form = ListingForm(request.POST)      
+        form = ListingForm(request.POST, request.FILES)      
         if form.is_valid():
             form.save()
             return redirect("/")
@@ -32,7 +32,7 @@ def update_list(request,pk):
     item = listing.objects.get(id = pk)
     form = ListingForm(instance = item)
     if request.method == "POST":       
-        form = ListingForm(request.POST, instance = item)      
+        form = ListingForm(request.POST, instance = item, files= request.FILES)      
         if form.is_valid():
             form.save()
             return redirect("/")
