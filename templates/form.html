@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>item</title>
-  </head>
-  <body>
-    <form method="POST">
-      {% csrf_token %} {{form.as_p}}
-      <button type="submit">Submit</button>
-    </form>
-  </body>
-</html>
+{% extends "base.html" %} {%block content%}
+<h1 class="text-4xl text-gray-900">Create a New Listing</h1>
+<form method="POST">
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit">Submit</button>
+</form>
+{%endblock content%}
