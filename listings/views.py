@@ -27,3 +27,21 @@ def create_list(request):
         "form": form
     }
     return render(request, "form.html", context)
+
+def update_list(request,pk):
+    item = listing.objects.get(id = pk)
+    form = ListingForm(instance = item)
+    if request.method == "POST":       
+        form = ListingForm(request.POST, instance = item)      
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+    context = {
+        "form": form
+    }
+    return render(request, "listing_update.html", context)
+
+def delete_list(request, pk):
+    item = listing.objects.get(id = pk)
+    item.delete()
+    return redirect("/")
